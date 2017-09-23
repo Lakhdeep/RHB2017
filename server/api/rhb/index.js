@@ -10,11 +10,10 @@ var express = require('express'),
 // router.use(tokenAuth);
 
 router.get('/', controller.list);
-router.get('/everything' , controller.allSensor)
 router.get('/:id', controller.find);
-router.post('/', controller.create);
-router.post('/submit', controller.submit);
-router.put('/:id', controller.update);
-
+router.post('/book', controller.submit);
+// router.post('/', controller.create);
+// router.post('/submit', controller.submit);
+// router.put('/:id', controller.update);
 
 module.exports = router;
