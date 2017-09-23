@@ -1,0 +1,35 @@
+<!--<div>-->
+  <!--<a ui-sref="assessor.taskAssignment"><span class="glyphicon glyphicon-plus-sign"></span> Assign tasks</a>-->
+<!--</div>-->
+<!--<br/>-->
+
+<uib-tabset active="active"  style="background-color: aliceblue">
+
+  <uib-tab index="0">
+    <uib-tab-heading>
+      Assigned
+    </uib-tab-heading>
+    <div>
+        <div ng-include="'app/views/assessorHomeWidget/assigned.html'"></div>
+    </div>
+  </uib-tab>
+
+  <uib-tab index="1">
+    <uib-tab-heading>
+      Pending Review
+    </uib-tab-heading>
+    <div class="widgets">
+        <div ng-include="'app/views/assessorHomeWidget/pendingReview.html'"></div>
+    </div>
+  </uib-tab>
+
+  <uib-tab index="2">
+    <uib-tab-heading>
+      Completed
+    </uib-tab-heading>
+    <div class="widgets">
+          <div ng-include="'app/views/assessorHomeWidget/completed.html'"></div>
+    </div>
+  </uib-tab>
+
+</uib-tabset>

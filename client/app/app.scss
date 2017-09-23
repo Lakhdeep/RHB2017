@@ -1,0 +1,58 @@
+$icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/fonts/bootstrap/";
+$fa-font-path: "../bower_components/font-awesome/fonts";
+
+@import '../bower_components/bootstrap-sass-official/vendor/assets/stylesheets/bootstrap';
+@import '../bower_components/font-awesome/scss/font-awesome';
+/**
+ * App-wide Styles
+ */
+
+.browsehappy {
+    margin: 0.2em 0;
+    background: #ccc;
+    color: #000;
+    padding: 0.2em 0;
+}
+
+.full-height{
+  height: 100%;
+}
+
+
+.bg-login {
+    height: 100%;
+    background-size: cover;
+    background-position: center center;
+}
+.dropdown-menu{
+  left: auto;
+}
+
+span[type=button]:hover{
+  -webkit-transform: none;
+  transform: none;
+}
+//
+//.bg-not-loggedin {
+//    height: 100%;
+//    background-image: url("../assets/img/img-bg.jpg");
+//    background-size: cover;
+//    background-position: center center;
+//}
+
+// Component styles are injected through grunt
+// injector
+
+@import 'styles/admin.scss';
+@import 'styles/login.scss';
+@import 'styles/auth.scss';
+@import 'styles/main.scss';
+@import 'styles/theme/navbar';
+@import 'styles/theme/buttons';
+@import "styles/app/notifications";
+@import "styles/app/instruction";
+@import "styles/app/modals";
+@import "styles/app/alerts";
+@import 'styles/common.scss';
+@import 'styles/theme/layout';
+// endinjector

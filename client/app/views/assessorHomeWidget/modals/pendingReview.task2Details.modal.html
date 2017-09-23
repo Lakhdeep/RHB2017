@@ -1,0 +1,122 @@
+<div class="modal-content" id="newEngineModal">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title">ATA {{current.task.ATA}} - {{current.task.ATADescription}}</h4>
+  </div>
+  <form name="newEngineForm" novalidate>
+    <table border="0" width="100%">
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="model" class="col-sm-3 control-label" style="font-weight:bold">Category</label>
+            <div class="col-sm-9">
+             <label class="control-label">{{current.task.category}}</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="customer" class="col-sm-3 control-label" style="font-weight:bold">Subject</label>
+            <div class="col-sm-9">
+              <label class="control-label">{{current.task.subject}}</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="serialNo" class="col-sm-3 control-label" style="font-weight:bold">Cockpit Effect</label>
+            <div class="col-sm-9">
+              <label class="control-label">{{current.task.cockpitEffect}}</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="model" class="col-sm-3 control-label" style="font-weight:bold"></label>
+            <div class="col-sm-9">
+              <label class="control-label">{{current.task.cockpitMsg}}</label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="model" class="col-sm-3 control-label" style="font-weight:bold">Questions</label>
+            <div class="col-sm-9">
+              <label class="control-label">
+                <ol>
+                  <li>
+                    Indicate the airplane status : GO or NO GO
+                  </li>
+                  <li>
+                    If airplane is GO IF :
+                    <ul>
+                      <li>Indicate the related MEL procedure item</li>
+                      <li>Indicate the related repair interval</li>
+                      <li>Indicate the related maintenance procedure (if applicable)</li>
+                    </ul>
+                  </li>
+                  <li>
+                    If airplane is NO GO :
+                    <ul>
+                      <li>Indicate the related trouble shooting procedure</li>
+                    </ul>
+                  </li>
+                </ol>
+              </label>
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="model" class="col-sm-3 control-label" style="font-weight:bold">Answer</label>
+            <div class="col-sm-12" rows="5">
+              <!--<textarea class="form-control" ng-model="current.answer" rows="5" disabled></textarea>-->
+              {{current.answer}}
+            </div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="form-group">
+            <label for="model" class="col-sm-3 control-label" style="font-weight:bold">Rating</label>
+            <div class="col-sm-9" rows="5" required>
+              <!--<input name="rating" type="radio" ng-model="current.rating" value="1"/> <i class="fa fa-frown-o  fa-5x" aria-hidden="true"></i>-->
+              <!--<input name="rating" type="radio" ng-model="current.rating" value="2"/> <i class="fa fa-meh-o  fa-5x" aria-hidden="true"></i>-->
+              <!--<input name="rating" type="radio" ng-model="current.rating" value="3"/> <i class="fa fa-smile-o  fa-5x" aria-hidden="true"></i>-->
+              <label><input style="visibility: hidden" name="rating" type="radio" ng-model="current.rating" value="1" onchange="myFunction(1)"/> <i class="fa fa-frown-o  fa-5x" id="1" aria-hidden="true" style="color: lightgrey"></i></label>
+              <label><input style="visibility: hidden" name="rating" type="radio" ng-model="current.rating" value="2" onchange="myFunction(2)"/> <i class="fa fa-meh-o  fa-5x" id="2" aria-hidden="true" style="color: lightgrey"></i></label>
+              <label><input style="visibility: hidden" name="rating" type="radio" ng-model="current.rating" value="3" onchange="myFunction(3)"/> <i class="fa fa-smile-o  fa-5x" id="3" aria-hidden="true" style="color: lightgrey"></i></label>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-primary" ng-disabled="!current.rating" ng-click="signOffTask(current)">Sign Off</button>&nbsp;&nbsp;
+      <button type="button" class="btn btn-warning" ng-click="reject(current)">Reject</button>
+    </div>
+  </form>
+</div>
+
+<script>
+  function myFunction(element) {
+    document.getElementById(1).style.color = "lightgrey";
+    document.getElementById(2).style.color = "lightgrey";
+    document.getElementById(3).style.color = "lightgrey";
+    document.getElementById(element).style.color = "gray";
+  }
+</script>
+

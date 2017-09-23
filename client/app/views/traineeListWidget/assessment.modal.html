@@ -1,0 +1,101 @@
+<div class="modal-content" id="assessmentModal">
+  <div class="modal-header">
+    <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+      <em class="ion-ios-close-empty sn-link-close"></em>
+    </button>
+    <h4 class="modal-title">Assessment for {{trainee.name}} </h4>
+      <div ng-show="trainee.assessment.answers.first" >
+        <h4><small class="text-danger"> This trainee has failed for the first assessment on {{trainee.assessment.answers.first.date | date: myDateFormat}}
+          <span ng-show="trainee.assessment.answers.second"> and second assessment on {{trainee.assessment.answers.second.date | date: myDateFormat}} </span>.</small> </h4>
+      </div>
+  </div>
+  <form class="form-horizontal" name="assessmentForm" novalidate>
+
+
+    <table class="table table-sm">
+      <tr>
+        <th> #</th>
+        <th class="col-sm-8"><strong> Assessment Criteria </strong></th>
+        <th><strong>Performance Level</strong></th>
+      </tr>
+
+      <tr>
+        <td>1.</td>
+        <td> scans the environment before starting the task to ensure safety</td>
+        <td>
+          <label class="radio-inline"><input type="radio" ng-model="answer[0]" value="Pass">Pass</label>
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[0]" value="Above Average">Above Average</label>-->
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[0]" value="Below Average">Below Average</label>-->
+          <label class="radio-inline"><input type="radio" ng-model="answer[0]" value="Fail">Fail</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>2.</td>
+        <td> reads/interprets the safety warning correctly</td>
+        <td>
+          <label class="radio-inline"><input type="radio" ng-model="answer[1]" value="Pass">Pass</label>
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[1]" value="Above Average">Above Average</label>-->
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[1]" value="Below Average">Below Average</label>-->
+          <label class="radio-inline"><input type="radio" ng-model="answer[1]" value="Fail">Fail</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>3.</td>
+        <td> follows the procedure steps</td>
+        <td>
+          <label class="radio-inline"><input type="radio" ng-model="answer[2]" value="Pass">Pass</label>
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[2]" value="Above Average">Above Average</label>-->
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[2]" value="Below Average">Below Average</label>-->
+          <label class="radio-inline"><input type="radio" ng-model="answer[2]" value="Fail">Fail</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>4.</td>
+        <td> interprets the reports and indications correctly</td>
+        <td>
+          <label class="radio-inline"><input type="radio" ng-model="answer[3]" value="Pass">Pass</label>
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[3]" value="Above Average">Above Average</label>-->
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[3]" value="Below Average">Below Average</label>-->
+          <label class="radio-inline"><input type="radio" ng-model="answer[3]" value="Fail">Fail</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>5.</td>
+        <td> makes the correct interpretation on FIM, AMM, MEL and other related procedures</td>
+        <td>
+          <label class="radio-inline"><input type="radio" ng-model="answer[4]" value="Pass">Pass</label>
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[4]" value="Above Average">Above Average</label>-->
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[4]" value="Below Average">Below Average</label>-->
+          <label class="radio-inline"><input type="radio" ng-model="answer[4]" value="Fail">Fail</label>
+        </td>
+      </tr>
+
+      <tr>
+        <td>6.</td>
+        <td> restores the aircraft back to initial condition (or appropriate condition depending on the circumstances)</td>
+        <td>
+          <label class="radio-inline"><input type="radio" ng-model="answer[5]" value="Pass">Pass</label>
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[5]" value="Above Average">Above Average</label>-->
+          <!--<label class="radio-inline"><input type="radio" ng-model="answer[5]" value="Below Average">Below Average</label>-->
+          <label class="radio-inline"><input type="radio" ng-model="answer[5]" value="Fail">Fail</label>
+        </td>
+      </tr>
+      <tr>
+        <td></td><td></td><td></td>
+      </tr>
+
+    </table>
+    <div class="modal-footer" style="padding-top: 20px">
+      <button type="button" class="btn btn-primary" ng-hide="trainee.assessment.answers.second" ng-click="evaluate()">Finish</button>
+      <button type="button" class="btn btn-warning" ng-click="$dismiss()">Close</button>
+    </div>
+  </form>
+</div>
+
+
+
+

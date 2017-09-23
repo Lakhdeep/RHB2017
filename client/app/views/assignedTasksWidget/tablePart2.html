@@ -1,0 +1,55 @@
+        <table class="table table-condensed table-hover"  st-table="displayAssList" st-safe-src="assignmentList">
+            <thead>
+            <tr class="sortable">
+                <th></th>
+                <th style="text-align: center;" st-sort="task.ATA">ATA</th>
+              <th style="text-align: center;" st-sort="task._type">Type</th>
+                <th style="text-align: center;" st-sort="task.subject">Subject</th>
+              <th style="text-align: center;" st-sort="task.category">Category</th>
+                <th style="text-align: center;" st-sort="updatedAt" st-sort-default="reverse">Last Update</th>
+            </tr>
+            <tr>
+                <th></th>
+                <th>
+                    <input st-search="task.ATA" placeholder="Search..." class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <select st-search="task._type" class="form-control">
+                        <option value="">All</option>
+                        <option ng-repeat="taskType in taskTypes" value="{{taskType}}">{{taskType}}</option>
+                    </select>
+                </th>
+                <th>
+                    <input st-search="task.subject" placeholder="Search..." class="input-sm form-control" type="search"/>
+                </th>
+                <th>
+                    <select st-search="task.category" class="form-control">
+                        <option value="">All</option>
+                        <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+                    </select>
+                </th>
+                <th>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="assignment in assignmentList | filter : {task : {_type : 'Part2'}, status: 'WIP'}" ng-click="openTaskModal(assignment)" style="cursor: pointer;">
+                <td></td>
+                <td style="text-align: center;">
+                  {{assignment.task.ATA}}
+                </td>
+              <td style="text-align: center;">{{assignment.task._type || "-"}}</td>
+                <td style="text-align: center;">{{assignment.task.subject}}</td>
+                <td style="text-align: center;">{{assignment.task.category}}</td>
+                <td style="text-align: center;">{{assignment.updatedAt | date: myDateFormat}}</td>
+            </tr>
+
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="8" class="text-center">
+                    <div st-pagination="" st-items-by-page="12" st-displayed-pages="5"></div>
+                </td>
+            </tr>
+            </tfoot>
+        </table>

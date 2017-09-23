@@ -1,0 +1,60 @@
+<table style="margin-top:0px; margin-left: 0px">
+  <th >
+    <a ng-click="bulkSignOff(assignmentListToDo)" style="cursor: pointer;" ng-show="checkbox.selected > 0"><span class="glyphicon glyphicon-ok"></span> Sign Off </a>
+  </th>
+</table>
+
+<table class="table table-condensed table-hover" st-table="displayAssList" st-safe-src="assignmentListToDo" style = "margin-top: 0px">
+  <thead>
+  <tr class="sortable">
+    <th style="width:10px"></th>
+    <th style="text-align: center;width:80px" st-sort="task.ATA" class="col-sm-1"><strong>ATA</strong></th>
+    <th style="text-align: center;width:100px" st-sort="task.category"><strong>Category</strong></th>
+    <th style="text-align: center;width:100px" st-sort="task.taskCode"><strong>Task Code</strong></th>
+    <th style="text-align: center;" st-sort="task.subject"><strong>Subject</strong></th>
+    <th style="text-align: center;" st-sort="updatedAt" st-sort-default="reverse"><strong>Assigned Date</strong></th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>
+      <input st-search="task.ATA" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+      <select st-search="task.category" class="form-control">
+        <option value="">All</option>
+        <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+      </select>
+    </th>
+    <th>
+      <select st-search="task.taskCode" class="form-control">
+        <option value="">All</option>
+        <option ng-repeat="taskCode in taskCodes" value="{{taskCode}}">{{taskCode}}</option>
+      </select>
+    </th>
+    <th>
+      <input st-search="task.subject" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="assignment in displayAssList | filter : {status: 'WIP'}"
+      ng-model="assignmentListToDo[assignment]">
+    <td ng-if="assignment.task._type == 'Part2'"><span class="glyphicon glyphicon-zoom-in" ng-click="openTaskModal(assignment)"/></td>
+    <td cs-select="assignment" ng-if="assignment.task._type != 'Part2'" checkbox="checkbox"></td>
+    <td style="text-align: center;">{{assignment.task.ATA}}</td>
+    <td style="text-align: center;">{{assignment.task.category}}</td>
+    <td style="text-align: center;">{{assignment.task.taskCode || "-"}}</td>
+    <td>{{assignment.task.subject}}</td>
+    <td style="text-align: center;">{{assignment.updatedAt | date: myDateFormat}}</td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="8" class="text-center">
+      <div st-pagination="" st-items-by-page="12" st-displayed-pages="5"></div>
+    </td>
+  </tr>
+  </tfoot>
+</table>

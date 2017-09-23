@@ -1,0 +1,40 @@
+<!--<div ng-show="evaluation" style="background: #4cb4e3" class="hero-unit center" >-->
+  <!--<h1>Congratulations!</h1>-->
+  <!--<br />-->
+  <!--<p>You have completed the requirements for this course. You can submit a request for assessor to give you final assessment.</p>-->
+  <!--<button class="btn btn-large btn-primary" ng-click="submitForEvaluation()">Submit for Assessment</button>-->
+<!--</div>-->
+
+<!--<br>-->
+
+<uib-tabset active="active" style="background-color: aliceblue">
+  <uib-tab index="0">
+    <uib-tab-heading>
+      To Do
+    </uib-tab-heading>
+    <uib-accordion>
+      <div class="widgets">
+          <div ng-include="'app/views/traineeHomeWidget/toDoTable.html'"></div>
+      </div>
+    </uib-accordion>
+  </uib-tab>
+
+  <uib-tab index="1">
+    <uib-tab-heading>
+      Pending Review
+    </uib-tab-heading>
+    <div class="widgets">
+          <div ng-include="'app/views/traineeHomeWidget/pendingReviewTable.html'"></div>
+    </div>
+  </uib-tab>
+
+  <uib-tab index="2">
+    <uib-tab-heading>
+      Completed
+    </uib-tab-heading>
+    <div class="widgets">
+          <div ng-include="'app/views/traineeHomeWidget/completedTable.html'"></div>
+    </div>
+  </uib-tab>
+
+</uib-tabset>

@@ -1,0 +1,22 @@
+{
+  "default":{
+    "message": "error! error not specified",
+    "status": "F",
+    "code": "400#ENS"
+  },
+  "usernamePasswordNotMatch": {
+    "message": "username and password did not match",
+    "status": "F",
+    "code": "401#UPNM"
+  },
+  "recordNotFound": {
+    "message": "record is not found",
+    "status": "F",
+    "code": "404#RNF"
+  },
+  "unauthorizedUser": {
+    "message": "unauthorized user",
+    "status": "F",
+    "code": "401#UU"
+  }
+}

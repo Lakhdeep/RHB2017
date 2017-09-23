@@ -1,0 +1,66 @@
+
+<table class="table table-condensed table-hover" st-table="displayTraineeListWIP" st-safe-src="traineeList">
+  <thead>
+  <tr class="sortable">
+    <th>#</th>
+    <th st-sort="name">Name</th>
+    <th st-sort="employeeId">Employee ID</th>
+    <th st-sort="licenseNo">License No.</th>
+    <th st-sort="completedAT">AT Completed</th>
+    <th st-sort="completedMT">MT Completed</th>
+    <th class="col-sm-3">Progress</th>
+    <th st-sort="updatedAt" st-sort-default="reverse">Last Updated At</th>
+    <th st-sort="createdAt" st-sort-default="reverse">Creation Date</th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>
+      <input st-search="name" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+      <input st-search="employeeId" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+      <input st-search="licenseNo" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th> AT </th>
+    <th> MT  </th>
+    <th>    </th>
+    <th>    </th>
+    <th>    </th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr ng-repeat="trainee in displayTraineeListWIP | filter:{status:'WIP'} track by $index ">
+    <td>{{ $index+1 }}</td>
+    <td>
+      <a  ui-sref="assessor.traineeDetails({ traineeId: trainee._id})"> {{trainee.name}} </a>
+    </td>
+    <td>{{trainee.employeeId || "-"}}</td>
+    <td>{{trainee.licenseNo}}</td>
+    <td>{{trainee.completedAT}}</td>
+    <td>{{trainee.completedMT}}</td>
+    <td style="text-align: center; padding-top: 10px">
+      <div class="progress">
+        <div class="progress-bar progress-bar-success" role="progressbar" style="width:{{trainee.completedMT}}/20}}">
+          <strong> {{trainee.completedMT}} / 20 </strong>
+        </div>
+      </div>
+    </td>
+    <td>{{trainee.updatedAt | date: myDateFormat}}</td>
+    <td >{{trainee.createdAt | date: myDateFormat}}</td>
+  </tr>
+  <tr>
+    <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="8" class="text-center">
+      <div st-pagination="" st-items-by-page="12" st-displayed-pages="5"></div>
+    </td>
+  </tr>
+  </tfoot>
+
+</table>

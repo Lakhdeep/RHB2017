@@ -1,0 +1,76 @@
+<table width="100%">
+    <th style="text-align: right">
+      Select trainee:
+    </th>
+    <th>
+      <ui-select ng-model="selected.trainees" theme="bootstrap" multiple id="selected" ng-change="getTaskList(selected.trainees)">
+        <ui-select-match placeholder="Input trainees' name">
+          {{$item.name}}&lt;{{$item.username}}&gt;
+        </ui-select-match>
+        <ui-select-choices repeat="trainee in (traineeList | filter: $select.search) track by trainee._id">
+          <span ng-bind="trainee.name + '<' + trainee.username + '>'"></span>
+        </ui-select-choices>
+      </ui-select>
+    </th>
+</table>
+<br/>
+<div>
+  <button type="button" class="btn btn-primary" ng-class="{'diabled-class': !btn-primary}" ng-click="assign(selected.trainees, taskList)" ng-disabled="noAssign">Assign</button>
+</div>
+
+
+<table class="table table-condensed table-hover well" st-table="taskListTable" st-safe-src="taskList" ng-hide="taskList.length < 1">
+  <thead>
+  <tr class="sortable">
+    <th></th>
+    <th class="col-sm-1" st-sort="ATA"><strong>ATA</strong></th>
+    <th st-sort="taskCode"><strong>TaskCode</strong></th>
+    <th st-sort="category"><strong>Category</strong></th>
+    <th st-sort="subject"><strong>Subject</strong></th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>
+      <input st-search="ATA" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+      <select st-search="taskCode" class="form-control">
+        <option value="">All</option>
+        <option ng-repeat="taskCode in taskCodes" value="{{taskCode}}">{{taskCode}}</option>
+      </select>
+    </th>
+    <th>
+      <select st-search="category" class="form-control">
+        <option value="">All</option>
+        <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+      </select>
+    </th>
+    <th>
+      <input st-search="subject" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr st-select-mode="multiple" ng-repeat="row in taskListTable" ng-model="taskList[task]">
+    <td cs-select="row"></td>
+    <td>
+      {{row.ATA}}
+    </td>
+    <td>{{row.taskCode || "-"}}</td>
+    <td>{{row.category}}</td>
+    <td>{{row.subject}}</td>
+    <td></td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="8" class="text-center">
+      <div st-pagination="" st-items-by-page="50" st-displayed-pages="5"></div>
+    </td>
+  </tr>
+  </tfoot>
+</table>
+
+

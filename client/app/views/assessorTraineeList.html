@@ -1,0 +1,42 @@
+<uib-tabset active="active"  style="background-color: aliceblue">
+
+  <uib-tab index="0">
+    <uib-tab-heading>
+      In Progress
+    </uib-tab-heading>
+    <div class="widgets">
+      <div class="row">
+        <div class="col-md-12" style="padding-left:0;">
+          <div ng-include="'app/views/traineeListWidget/traineeTableWIP.html'"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+
+  <uib-tab index="1">
+    <uib-tab-heading>
+      Pending Assessment
+    </uib-tab-heading>
+    <div class="widgets">
+      <div class="row">
+        <div class="col-md-12" style="padding-left:0;">
+          <div ng-include="'app/views/traineeListWidget/traineeTablePending.html'"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+
+  <uib-tab index="2">
+    <uib-tab-heading>
+      Graduated
+    </uib-tab-heading>
+    <div class="widgets">
+      <div class="row">
+        <div class="col-md-12" style="padding-left:0;">
+          <div ng-include="'app/views/traineeListWidget/traineeTableGraduated.html'"></div>
+        </div>
+      </div>
+    </div>
+  </uib-tab>
+
+</uib-tabset>

@@ -1,0 +1,8 @@
+<p class="input-group">
+  <input type="text" class="form-control" uib-datepicker-popup="{{'dd MMM yyyy'}}" ng-model="parentObject[pickerName]" ng-readonly="isReadonly"
+         is-open="datePickers[pickerName]" datepicker-options="dateOptions" close-text="Close" alt-input-formats="{{['yyyy-M!-d!']}}" />
+  <span class="input-group-btn" ng-hide="isReadonly">
+    <button type="button" class="btn btn-default" ng-click="openDatePicker(pickerName)"><i class="glyphicon glyphicon-calendar"></i></button>
+  </span>
+</p>
+

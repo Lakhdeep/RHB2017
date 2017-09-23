@@ -1,0 +1,123 @@
+<table width="100%">
+  <tr>
+    <th style="width:100px">
+      <button type="button" ui-sref="assessor.traineeInfo" class="btn btn-default">
+        <span class="glyphicon glyphicon-chevron-left"></span> Back
+      </button>
+    </th>
+    <th   style="text-align: right;width:110px">
+      <strong>Select a trainee:</strong>
+    </th>
+    <th style="padding-left: 5px">
+      <select class="form-control"  ng-model="selectedTrainee" ng-change="changeTrainee()">
+        <option value=""> {{currentTrainee.name}} ( Employee Id: {{currentTrainee.employeeId}} )</option>
+        <option  ng-repeat="trainee in traineeList" value="{{trainee._id}}" >{{trainee.name}} ( Employee Id:
+          {{trainee.employeeId}} )
+        </option>
+      </select>
+    </th>
+  </tr>
+</table>
+
+<div ng-show="currentTrainee.assessment.answers.first">
+  <h4>
+    <small class="text-danger"> This trainee has
+      <span ng-if="currentTrainee.assessment.answers.second"> failed </span>
+      <span ng-if="currentTrainee.assessment.passed && !currentTrainee.assessment.answers.second"> passed </span>
+      for the first assessment on {{currentTrainee.assessment.answers.first.date | date: myDateFormat}}
+      <span ng-show="currentTrainee.assessment.answers.second"> and
+      <span ng-if="!currentTrainee.assessment.passed"> failed </span>
+    <span ng-if="currentTrainee.assessment.passed"> passed </span>
+      second assessment on {{currentTrainee.assessment.answers.second.date | date: myDateFormat}} </span>.
+    </small>
+  </h4>
+</div>
+
+<table class="table table-condensed table-hover" st-table="assignmentList">
+  <thead>
+  <tr class="sortable">
+    <th style="width:10px">#</th>
+    <th style="text-align: center;width:90px" st-sort="task.ATA"><strong>ATA</strong></th>
+    <th style="text-align: center;width:100px" st-sort="task.taskCode"><strong>Task Code</strong></th>
+    <th style="text-align: center;width:100px" st-sort="task.category"><strong>Category</strong></th>
+    <th style="text-align: center;" st-sort="task.subject"> <strong>Subject</strong></th>
+    <th style="text-align: center;" st-sort="updatedAt" st-sort-default="reverse"><strong>Last Updated</strong></th>
+    <th style="text-align: center;" st-sort="createdAt" st-sort-default="reverse"><strong>Creation Date</strong></th>
+    <th style="text-align: center;" st-sort="approvedBy.name"><strong>Reviewer</strong></th>
+    <th style="text-align: center;" st-sort="status" st-sort-default="reverse"><strong>Status</strong></th>
+    <th st-sort="rating" style="text-align: center;width:50px"><strong></strong></th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>
+      <input st-search="task.ATA" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+      <select st-search="task._type" class="form-control">
+        <option value="">All</option>
+        <option ng-repeat="taskCode in taskCodes" value="{{taskCode}}">{{taskCode}}</option>
+      </select>
+    </th>
+    <th>
+      <select st-search="task.category" class="form-control">
+        <option value="">All</option>
+        <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+      </select>
+    </th>
+    <th>
+      <input st-search="task.subject" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th>
+      <select st-search="status" class="form-control">
+        <option value="">All</option>
+        <option ng-repeat="status in statuses" value="{{status}}">{{status}}</option>
+      </select>
+    </th>
+    <th></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <tr ng-repeat="assignment in assignmentList track by $index " ng-click="showTaskDetails(assignment)" style="cursor: pointer;">
+    <td>{{ $index+1 }}</td>
+    <td style="text-align: center;"> {{assignment.task.ATA }}</td>
+    <td style="text-align: center;">{{assignment.task.taskCode || "-"}}</td>
+    <td style="text-align: center;">{{assignment.task.category}}</td>
+    <td>{{assignment.task.subject}}</td>
+    <td style="text-align: center;">{{assignment.updatedAt | date: myDateFormat}}</td>
+    <td style="text-align: center;">{{assignment.createdAt | date: myDateFormat}}</td>
+    <td style="text-align: center;">{{assignment.approvedBy.name}}</td>
+    <td style="text-align: center;">{{assignment.status}}</td>
+    <td style="text-align: center;">
+      <div>
+        <i class="fa fa-frown-o  fa-2x" id="1" aria-hidden="true" ng-if="assignment.rating==1"></i>
+        <i class="fa fa-meh-o  fa-2x" id="2" aria-hidden="true" ng-if="assignment.rating==2"></i>
+        <i class="fa fa-smile-o  fa-2x" id="3" aria-hidden="true" ng-if="assignment.rating==3"></i>
+      </div>
+    </td>
+  </tr>
+
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="8" class="text-center">
+      <div st-pagination="" st-items-by-page="12" st-displayed-pages="5"></div>
+    </td>
+  </tr>
+  </tfoot>
+
+</table>

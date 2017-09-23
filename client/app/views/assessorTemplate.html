@@ -1,0 +1,39 @@
+<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+  <a ui-sref="assessor.assessorHome" class="al-logo clearfix">
+    <img src="/assets/images/afiklmem_logo_white.png" alt="AFIKLM E&M LOGO" style="display: inline;">
+    e<span>Syllabus</a>
+  <ul class="nav navbar-nav" style="margin-top: 7px;margin-left: 10px; font-size: 15px; font-weight: bold">
+    <li><a ui-sref="assessor.traineeInfo">Trainees</a></li>
+    <li><a ui-sref="assessor.courseInfo">Course Info</a></li>
+    <li><a ui-sref="assessor.wip">Setting</a></li>
+  </ul>
+
+  <div class="user-profile clearfix">
+    <div class="al-user-profile" uib-dropdown>
+      <a uib-dropdown-toggle class="profile-toggle-link">
+        <img src="https://cdn1.iconfinder.com/data/icons/ninja-things-1/720/ninja-background-128.png">
+      </a>
+      <ul uib-dropdown-menu class="top-dropdown-menu profile-dropdown">
+        <li><i class="dropdown-arr"></i></li>
+        <!--<li><a href=""><i class="fa fa-user"></i>Profile</a></li>-->
+        <!--<li><a href><i class="fa fa-cog"></i>Settings</a></li>-->
+        <li><a href class="signout" ng-click="logout()"><i class="fa fa-user"></i>{{currentUser.name}}</a></li>
+        <li><a href class="signout" ng-click="logout()"><i class="fa fa-power-off"></i>Sign out</a></li>
+      </ul>
+    </div>
+    <!--<msg-center></msg-center>-->
+  </div>
+</div>
+
+
+<div class="al-main" style="background-color: #FFFFFF;min-height:100%;">
+  <div class="al-content">
+    <div ui-view="" ng-if="currentUser._type == 'Assessor'"></div>
+  </div>
+</div>
+
+
+
+<!--<div class="container">-->
+<!--<div ng-include src="'app/views/' + activetab + '.html'"></div>-->
+<!--</div>-->

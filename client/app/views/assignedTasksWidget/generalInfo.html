@@ -1,0 +1,260 @@
+
+<script>
+
+    //Get the file contents
+    var txtFile = "test.txt";
+    var file = new File(txtFile);
+    var str = JSON.stringify(repairOrder);
+
+    //Save the file contents as a DataURI
+    var dataUri = 'data:application/json;charset=utf-8,'+ encodeURIComponent(str);
+
+    //Write it as the href for the link
+    var link = document.getElementById('link').href = dataUri;
+
+</script>
+<div class="form-horizontal panel-body">
+    <a ui-sref="app.engineRepairOrders" class="btn btn-sm btn-info" style="display: inline; margin-right: 30px;">Back</a>
+    <a ng-click="saveToPc(repairOrder, repairOrder.repairOrderNumber+'.json')" class="btn btn-sm btn-primary" style="display: inline;">Download</a>
+  <!--<div style="margin: 0px;" class="row">-->
+      <!--<button style="margin: 10px;" type="button" class="btn btn-sm pull-right" ng-click="saveToPc(repairOrder, repairOrder.repairOrderNumber+'.json')" ng-class="{true: 'btn-primary', false: 'btn-success'}[statusProductionReadonly]" style="display: inline;">-->
+          <!--Download-->
+      <!--</button>-->
+  <!--</div>-->
+<table border="0" width="100%">
+    <tr>
+        <td>
+  <!--<uib-accordion>-->
+    <!--<div uib-accordion-group class="panel-default" is-open="true">-->
+      <!--<uib-accordion-heading>-->
+        <!--<p class="pull-right">Order Details</p>-->
+      <!--</uib-accordion-heading>-->
+      <div class="form-group">
+        <label for="repairOrderNumber" class="col-sm-4 control-label" style="font-weight:bold">Repair Order No</label>
+        <div class="col-sm-8">
+          <!--<input type="text" class="form-control" id="roNumber" placeholder="5052442" ng-model="repairOrder.repairOrderNumber" ng-readonly="infoReadonly">-->
+            <label class="control-label">{{repairOrder.repairOrderNumber}}</label>
+        </div>
+      </div>
+        </td>
+        <td>
+      <!--<div class="form-group">-->
+        <!--<label class="col-sm-4 control-label">Repair Order Received</label>-->
+        <!--<div class="col-sm-8">-->
+          <!--<date-selector  parent-object="repairOrder" picker-name="{{'startDate'}}"  is-readonly="infoReadonly"></date-selector>-->
+        <!--</div>-->
+      <!--</div>-->
+
+        <div class="form-group">
+            <label for="customer" class="col-sm-4 control-label" style="font-weight:bold">Customer</label>
+            <div class="col-sm-8">
+                <!--<select class="form-control show-tick" ng-model="repairOrder.engine.customer._id" id="customer" ng-disabled="infoReadonly">-->
+                    <!--<option ng-repeat="cust in customers" ng-value="cust._id">{{cust.code}} - {{cust.name}}</option>-->
+                <!--</select>-->
+                <label class="control-label">{{repairOrder.engine.customer.code}} - {{repairOrder.engine.customer.name}}</label>
+            </div>
+        </div>
+        </td>
+    </tr>
+    <!--</div>-->
+  <!--</uib-accordion>-->
+  <!--repair order end-->
+
+  <!--<uib-accordion>-->
+    <!--<div uib-accordion-group class="panel-default">-->
+      <!--<uib-accordion-heading>-->
+        <!--<p class="pull-right">Engine Details</p>-->
+      <!--</uib-accordion-heading>-->
+    <tr>
+        <td>
+      <div class="form-group">
+        <label for="serialNo" class="col-sm-4 control-label" style="font-weight:bold">Engine Serial No</label>
+        <div class="col-sm-8">
+          <!--<input type="text" class="form-control" id="serialNo" placeholder="906436" ng-model="repairOrder.engine.serialNumber" ng-readonly="infoReadonly">-->
+            <label class="control-label">{{repairOrder.engine.serialNumber}}</label>
+        </div>
+      </div>
+        </td>
+        <td>
+      <div class="form-group">
+        <label for="model" class="col-sm-4 control-label" style="font-weight:bold">Engine Model</label>
+        <div class="col-sm-8">
+          <!--<select class="form-control show-tick" ng-model="repairOrder.engine.model" id="model" ng-disabled="infoReadonly">-->
+            <!--<option ng-repeat="e in engines" ng-value="e.model">{{e.model}}</option>-->
+          <!--</select>-->
+          <!--<input type="text" class="form-control" id="serialNo" placeholder="i.e. GE90-XX" ng-model="repairOrder.engine.model" ng-readonly="infoReadonly">-->
+            <label class="control-label">{{repairOrder.engine.model}}</label>
+        </div>
+      </div>
+        </td>
+    </tr>
+    <!--</div>-->
+  <!--</uib-accordion>-->
+
+    <tr>
+        <td>
+            <div class="form-group">
+                <label for="authorIn" class="col-sm-4 control-label" style="font-weight:bold">Inventory In By</label>
+                <div class="col-sm-8">
+                    <!--<input type="text" class="form-control" id="serialNo" placeholder="906436" ng-model="repairOrder.engine.serialNumber" ng-readonly="infoReadonly">-->
+                    <label class="control-label">{{repairOrder.authorIn}}</label>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label for="authorIn" class="col-sm-4 control-label" style="font-weight:bold">Inventory Out By</label>
+                <div class="col-sm-8">
+                    <!--<select class="form-control show-tick" ng-model="repairOrder.engine.model" id="model" ng-disabled="infoReadonly">-->
+                    <!--<option ng-repeat="e in engines" ng-value="e.model">{{e.model}}</option>-->
+                    <!--</select>-->
+                    <!--<input type="text" class="form-control" id="serialNo" placeholder="i.e. GE90-XX" ng-model="repairOrder.engine.model" ng-readonly="infoReadonly">-->
+                    <label class="control-label">{{repairOrder.authorOut ? repairOrder.authorOut : '-'}}</label>
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group">
+                <label for="lastUpdated" class="col-sm-4 control-label" style="font-weight:bold">Last Updated</label>
+                <div class="col-sm-8">
+                    <!--<input type="text" class="form-control" id="serialNo" placeholder="906436" ng-model="repairOrder.engine.serialNumber" ng-readonly="infoReadonly">-->
+                    <label class="control-label">{{repairOrder.lastUpdated | date: myDateFormat}}</label>
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group">
+                <label for="lastUpdated" class="col-sm-4 control-label" style="font-weight:bold">Status</label>
+                <div class="col-sm-8">
+                    <!--<input type="text" class="form-control" id="serialNo" placeholder="906436" ng-model="repairOrder.engine.serialNumber" ng-readonly="infoReadonly">-->
+                    <label class="control-label">{{repairOrder.status}}</label>
+                </div>
+            </div>
+        </td>
+    </tr>
+
+</table>
+
+    <uib-accordion>
+        <div uib-accordion-group class="panel-default" is-open="true">
+            <uib-accordion-heading>
+                <p class="pull-left">Inventory</p>
+            </uib-accordion-heading>
+
+            <div class="table-responsive" style="overflow:auto">
+                <table class="table table-bordered table-condensed">
+                    <thead>
+                    <tr style="font-weight:bold">
+                        <td></td>
+                        <td colspan="3" align="center">In</td>
+                        <td colspan="3" align="center">Out</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr style="font-weight:bold"  align="center">
+                    <td>Description</td>
+                    <td>Part Number</td>
+                    <td>Serial Number</td>
+                    <td>Status</td>
+                    <td>Part Number</td>
+                    <td>Serial Number</td>
+                    <td>Status</td>
+                    </tr>
+                    <tr ng-repeat="equiptment in repairOrder.engine.equipmentList track by $index" ng-if="equiptment">
+
+                            <td>
+                                <input type="text" ng-model="equiptment.description" class="form-control" ng-hide="delayReadonly">
+                                <span ng-show="delayReadonly">{{equiptment.description}}</span>
+                            </td>
+                            <td>
+                                <input type="text" ng-model="equiptment.in.partNumber" class="form-control" ng-hide="delayReadonly">
+                                <span ng-show="delayReadonly">{{equiptment.in.partNumber}}</span>
+                            </td>
+                            <td>
+                                <div>
+                                    <toggle ng-model="d.isExcusable" on="Yes" off="No"  ng-hide="delayReadonly"></toggle>
+                                    <span ng-show="delayReadonly">{{equiptment.in.serialNumber}}</span>
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <toggle ng-model="equiptment.in.status" on="Yes" off="No" ng-hide="delayReadonly"></toggle>
+                                    <span ng-show="delayReadonly">{{equiptment.in.status}}</span>
+                                </div>
+                            </td>
+                        <td>
+                            <input type="text" ng-model="equiptment.in.partNumber" class="form-control" ng-hide="delayReadonly">
+                            <span ng-show="delayReadonly">{{equiptment.out.partNumber}}</span>
+                        </td>
+                        <td>
+                            <div>
+                                <toggle ng-model="d.isExcusable" on="Yes" off="No"  ng-hide="delayReadonly"></toggle>
+                                <span ng-show="delayReadonly">{{equiptment.out.serialNumber}}</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <toggle ng-model="equiptment.in.status" on="Yes" off="No" ng-hide="delayReadonly"></toggle>
+                                <span ng-show="delayReadonly">{{equiptment.out.status}}</span>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </uib-accordion>
+
+
+<!--<uib-accordion>-->
+    <!--<div uib-accordion-group class="panel-default">-->
+        <!--<uib-accordion-heading>-->
+            <!--<p class="pull-right">Inventory Out</p>-->
+        <!--</uib-accordion-heading>-->
+
+        <!--<div class="table-responsive" style="overflow:auto">-->
+            <!--<table class="table table-bordered table-condensed">-->
+                <!--<thead>-->
+                <!--<tr>-->
+                    <!--<th>Description</th>-->
+                    <!--<th>Part Number</th>-->
+                    <!--<th>Serial Number</th>-->
+                    <!--<th>Status</th>-->
+                    <!--<th ng-hide="delayReadonly">Action</th>-->
+                <!--</tr>-->
+                <!--</thead>-->
+                <!--<tbody>-->
+                <!--<tr ng-repeat="equiptment in repairOrder.engine.equipmentList track by $index" ng-if="equiptment.out">-->
+
+                    <!--<td>-->
+                        <!--<input type="text" ng-model="equiptment.description" class="form-control" ng-hide="delayReadonly">-->
+                        <!--<span ng-show="delayReadonly">{{equiptment.description}}</span>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<input type="text" ng-model="equiptment.in.partNumber" class="form-control" ng-hide="delayReadonly">-->
+                        <!--<span ng-show="delayReadonly">{{equiptment.out.partNumber}}</span>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<div>-->
+                            <!--<toggle ng-model="d.isExcusable" on="Yes" off="No"  ng-hide="delayReadonly"></toggle>-->
+                            <!--<span ng-show="delayReadonly">{{equiptment.out.serialNumber}}</span>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<div>-->
+                            <!--<toggle ng-model="equiptment.in.status" on="Yes" off="No" ng-hide="delayReadonly"></toggle>-->
+                            <!--<span ng-show="delayReadonly">{{equiptment.out.status}}</span>-->
+                        <!--</div>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--</tbody>-->
+            <!--</table>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</uib-accordion>-->
+
+
+
+</div>

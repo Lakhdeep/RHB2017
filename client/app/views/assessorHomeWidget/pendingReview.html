@@ -1,0 +1,71 @@
+<table style="margin-top:0px; margin-left: 20px">
+  <th >
+    <a ng-click="openTask1Modal(assignmentListPending)" style="cursor: pointer;" ng-show="checkbox.selected > 0"><span class="glyphicon glyphicon-ok"></span> Sign Off </a>
+    <a ng-click="reject(assignmentListPending)" style="margin-left:20px;cursor: pointer;" ng-show="checkbox.selected > 0"><span class="glyphicon glyphicon-remove"></span> Reject </a>
+  </th>
+</table>
+
+<table class="table table-condensed table-hover" st-table="displayAssList" st-safe-src="assignmentListPending" style="margin-top: 10px">
+  <thead>
+  <tr class="sortable">
+    <th style="width:10px"></th>
+    <th style="text-align:center; width:150px" st-sort="trainee.name"><strong>Trainee</strong></th>
+    <th style="text-align: center;width:90px" st-sort="task.ATA"><strong>ATA</strong></th>
+    <th style="text-align: center;width:100px" st-sort="task.category"><strong>Category</strong></th>
+    <th style="text-align: center;width:100px" st-sort="task.taskCode"><strong>Task Code</strong></th>
+    <th style="text-align: center;" st-sort="task.subject"><strong>Subject</strong></th>
+    <th style="text-align: center;" st-sort="updatedAt" st-sort-default="reverse"><strong>Submission Date</strong></th>
+  </tr>
+  <tr>
+    <th></th>
+    <th>
+      <input st-search="trainee.name" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+      <input st-search="task.ATA" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+      <select st-search="task.category" class="form-control">
+        <option value="">All</option>
+        <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+      </select>
+    </th>
+    <th>
+      <select st-search="task.taskCode" class="form-control">
+        <option value="">All</option>
+        <option ng-repeat="taskCode in taskCodes" value="{{taskCode}}">{{taskCode}}</option>
+      </select>
+    </th>
+    <th>
+      <input st-search="task.subject" placeholder="Search..." class="input-sm form-control" type="search"/>
+    </th>
+    <th>
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr ng-repeat="row in displayAssList | filter : { status: 'Pending'} track by $index"
+      ng-model="assignmentListPending[assignment]">
+    <td ng-if="row.task.taskCode !='TS'" cs-select="row" checkbox="checkbox"></td>
+    <td ng-if="row.task.taskCode =='TS'"> <span class="glyphicon glyphicon-zoom-in" ng-click="openTask2Modal(row)"/> </td>
+    <td style="text-align: center;">
+      {{row.trainee.name}}
+    </td >
+    <td style="text-align: center;">
+      {{row.task.ATA}}
+    </td>
+    <td style="text-align: center;">{{row.task.category}}</td>
+    <td style="text-align: center;">{{row.task.taskCode || "-"}}</td>
+    <td>{{row.task.subject}}</td>
+    <td style="text-align: center;">{{row.updatedAt | date: myDateFormat}}</td>
+  </tr>
+
+  </tbody>
+  <tfoot>
+  <tr>
+    <td colspan="8" class="text-center">
+      <div st-pagination="" st-items-by-page="12" st-displayed-pages="5"></div>
+    </td>
+  </tr>
+  </tfoot>
+</table>

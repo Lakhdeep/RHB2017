@@ -1,0 +1,37 @@
+
+<main class="bg-login auth-main notification-panel">
+
+  <div class="auth-block">
+
+    <form class="form-horizontal" name="loginForm" ng-submit="login(loginForm)" novalidate>
+
+      <div class="form-group">
+        <h1>eSyllabus</h1>
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' :loginForm.emailInput.$invalid && !loginForm.emailInput.$pristine }">
+        <label class="col-sm-2 control-label">Email</label>
+        <div class="col-sm-10">
+          <input type="email" class="form-control" name="emailInput" placeholder="Email" ng-model="user.email" required>
+          <p ng-show="loginForm.emailInput.$error.required && !loginForm.emailInput.$pristine" class="help-block">* Your email is required.</p>
+          <p ng-show="loginForm.emailInput.$error.email && !loginForm.emailInput.$pristine && submitted" class="help-block">* Illegal email address.</p>
+        </div>
+
+      </div>
+      <div class="form-group" ng-class="{ 'has-error' :loginForm.passwordInput.$invalid && !loginForm.passwordInput.$pristine }">
+        <label class="col-sm-2 control-label">Password</label>
+
+        <div class="col-sm-10">
+          <input type="password" class="form-control" name="passwordInput" placeholder="Password" ng-model="user.password" required>
+          <p ng-show="loginForm.passwordInput.$error.required && !loginForm.passwordInput.$pristine" class="help-block">* Your password is required.</p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default btn-auth">Sign In</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</main>
