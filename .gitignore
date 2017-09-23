@@ -1,0 +1,21 @@
+node_modules
+public
+.tmp
+.sass-cache
+client/bower_components
+dist
+/server/config/local.env.js
+npm-*.log
+# Ignore IntelliJ project directory
+.idea
+*.iml
+# osx
+.DS_Store
+courier.log
+detections.log
+client/app/app.css.map
+gradlew
+gradle/
+gradlew.bat
+.gradle/
+_site/
